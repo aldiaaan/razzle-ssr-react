@@ -1,0 +1,15 @@
+{
+  "presets": [
+    [
+      "razzle/babel",
+      {
+        "preset-typescript": {},
+        "preset-react": {
+          "runtime": "automatic"
+        }
+      }
+    ],
+    "@emotion/babel-preset-css-prop"
+  ],
+  "plugins": ["@loadable/babel-plugin", "babel-plugin-twin", "babel-plugin-macros"]
+}
