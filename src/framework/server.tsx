@@ -10,7 +10,8 @@ import createCache from '@emotion/cache';
 import {Helmet} from 'react-helmet';
 import serialize from 'serialize-javascript';
 import App from '../app';
-import {getConfig} from './config';
+import {RuntimeConfig} from './config';
+import {isDev} from './utils';
 
 const server = express();
 
@@ -63,7 +64,7 @@ export const renderApp = (req: express.Request, res: express.Response): {html?: 
         <div id="app">${markup}</div>
         ${scriptTags}
         <script>
-          window.__config = ${serialize(getConfig(process.env.NODE_ENV as any))}
+          window.__config = ${serialize(RuntimeConfig)}
         </script>
       </body>
     </html>
