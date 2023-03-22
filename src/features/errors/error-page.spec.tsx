@@ -1,6 +1,6 @@
-import {describe, expect, test} from '@jest/globals';
+import {describe, test} from '@jest/globals';
 import React from 'react';
-import {render, screen} from '@testing-library/react';
+import {render} from '@testing-library/react';
 import ErrorPage from './error-page';
 
 describe('error page', () => {

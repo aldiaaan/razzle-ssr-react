@@ -1,9 +1,6 @@
 import React from 'react';
-import {RuntimeConfig} from '../framework/config';
 
-export type ErrorPageProps = unknown;
-
-function ErrorPage(props: ErrorPageProps) {
+function ErrorPage() {
   return (
     <div tw="h-screen flex items-center justify-center flex-col container mx-auto px-3">
       <h3 tw="font-bold text-7xl text-indigo-900">404</h3>
