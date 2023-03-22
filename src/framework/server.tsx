@@ -9,10 +9,8 @@ import createEmotionServer from '@emotion/server/create-instance';
 import createCache from '@emotion/cache';
 import {Helmet} from 'react-helmet';
 import serialize from 'serialize-javascript';
-import AppLazy from '../app.lazy';
 import App from '../app';
 import {RuntimeConfig} from './config';
-import {isDev} from './utils';
 
 const server = express();
 
@@ -27,15 +25,15 @@ export const renderApp = (req: express.Request, res: express.Response): {html?: 
     entrypoints: ['client'],
   });
 
-  const isBot = Boolean(req.query.isBot);
-
   const markup = renderToString(
     <CacheProvider value={cache}>
       {/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
       {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
       {/* @ts-ignore */}
       <ChunkExtractorManager extractor={extractor}>
-        <StaticRouter location={req.url}>{isBot ? <App /> : <AppLazy />}</StaticRouter>
+        <StaticRouter location={req.url}>
+          <App />
+        </StaticRouter>
       </ChunkExtractorManager>
     </CacheProvider>,
   );

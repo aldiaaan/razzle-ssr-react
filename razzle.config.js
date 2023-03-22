@@ -22,9 +22,9 @@ module.exports = {
     paths, // the modified paths that will be used by Razzle.
   }) {
     // Do some stuff...
-    // console.log({jestConfig, webpackObject})
-   jestConfig.testMatch = ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"];
+  //  jestConfig.testMatch = [];
    
+    // console.log({jestConfig, webpackObject})
     return jestConfig;
   },
   modifyWebpackOptions({
