@@ -2,6 +2,6 @@ export {};
 
 declare global {
   interface Window {
-    __config: Record<string, string>;
+    __APP_CONFIG__: Record<string, string>;
   }
 }

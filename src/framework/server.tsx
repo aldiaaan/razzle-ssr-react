@@ -9,6 +9,7 @@ import createEmotionServer from '@emotion/server/create-instance';
 import createCache from '@emotion/cache';
 import {Helmet} from 'react-helmet';
 import serialize from 'serialize-javascript';
+import AppLazy from '../app.lazy';
 import App from '../app';
 import {RuntimeConfig} from './config';
 import {isDev} from './utils';
@@ -26,15 +27,15 @@ export const renderApp = (req: express.Request, res: express.Response): {html?: 
     entrypoints: ['client'],
   });
 
+  const isBot = Boolean(req.query.isBot);
+
   const markup = renderToString(
     <CacheProvider value={cache}>
       {/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
       {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
       {/* @ts-ignore */}
       <ChunkExtractorManager extractor={extractor}>
-        <StaticRouter location={req.url}>
-          <App />
-        </StaticRouter>
+        <StaticRouter location={req.url}>{isBot ? <App /> : <AppLazy />}</StaticRouter>
       </ChunkExtractorManager>
     </CacheProvider>,
   );
@@ -59,13 +60,13 @@ export const renderApp = (req: express.Request, res: express.Response): {html?: 
         ${styles}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         ${linkTags}
+        <script type="text/javascript">window.__APP_CONFIG__ = ${serialize(RuntimeConfig)}</script>
       </head>
       <body ${helmet.bodyAttributes.toString()}>
+        <noscript><div>Website ini memerlukan javascript untuk berjalan.</div></noscript>
         <div id="app">${markup}</div>
         ${scriptTags}
-        <script>
-          window.__config = ${serialize(RuntimeConfig)}
-        </script>
+       
       </body>
     </html>
   `;

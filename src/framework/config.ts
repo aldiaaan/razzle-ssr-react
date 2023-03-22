@@ -9,4 +9,4 @@ export const ProductionConfig = {
 };
 
 export const RuntimeConfig =
-  typeof window !== 'undefined' ? window.__config : isDev() ? DevelopmentConfig : ProductionConfig;
+  typeof window !== 'undefined' ? window.__APP_CONFIG__ : isDev() ? DevelopmentConfig : ProductionConfig;
