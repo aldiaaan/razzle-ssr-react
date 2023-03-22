@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Routes as BrowserRoutes} from 'react-router-dom';
-import ErrorPage from './errors/error-page.lazy';
+import ErrorPage from './features/errors/error-page.lazy';
 
 export default function Routes() {
   return (
