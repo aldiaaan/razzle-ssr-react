@@ -10,7 +10,6 @@ function ErrorPage(props: ErrorPageProps) {
       <h1 tw="mt-8 font-semibold text-2xl text-gray-700">Page Not Found</h1>
       <p tw="text-gray-500 text-lg font-medium mt-3 text-center">
         We`re sorry, the page you requested could not be found.
-        {RuntimeConfig.API_VERSION}
       </p>
     </div>
   );

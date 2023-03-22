@@ -12,6 +12,21 @@ module.exports = {
       bundleAnalyzerConfig: {}
     }
   }],
+  modifyJestConfig({
+    jestConfig, // the created jest config
+    webpackObject, // the imported webpack node module
+    options: {
+      pluginOptions, // the options passed to the plugin ({ name:'pluginname', options: { key: 'value'}})
+      razzleOptions, // the modified options passed to Razzle in the `options` key in `razzle.config.js` (options: { key: 'value'})
+    },
+    paths, // the modified paths that will be used by Razzle.
+  }) {
+    // Do some stuff...
+    // console.log({jestConfig, webpackObject})
+   jestConfig.testMatch = ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"];
+   
+    return jestConfig;
+  },
   modifyWebpackOptions({
     env: {
       target, // the target 'node' or 'web'
